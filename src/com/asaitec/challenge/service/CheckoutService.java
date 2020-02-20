@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 QikServe
+ * Copyright (c) 2020 Asaitec
  */
 package com.asaitec.challenge.service;
 
@@ -22,7 +22,7 @@ public interface CheckoutService {
      * promotions.
      * 
      * @param   cart        cart to checkout
-     * @return  checkout    checkout of cart with list of items and total to pay
+     * @return  checkout    checkout of cart with list of products and total to pay
      */
     public Checkout checkout(Cart cart);
 

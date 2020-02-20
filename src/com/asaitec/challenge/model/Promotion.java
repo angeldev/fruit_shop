@@ -3,8 +3,6 @@
  */
 package com.asaitec.challenge.model;
 
-import java.util.Map;
-
 /**
  * The Promotion class is a base class for all promotions, having common 
  * attributes
@@ -22,14 +20,14 @@ public abstract class Promotion {
     private PromotionType type;
     
     
-    public static Promotion getPromotion(Map<String,Object> jsonMap) {
-        return PromotionFactory.getPromotion((String) jsonMap.get("id"), 
-                PromotionType.valueOf((String)jsonMap.get("type")), jsonMap);
+    public static Promotion getPromotion() {
+        // TODO: return object from factory
+        return null;
     }
 
     
     /** 
-     *  Item's constructor
+     *  Promotion's constructor
      */
     protected Promotion() {
         super();
@@ -63,12 +61,12 @@ public abstract class Promotion {
     
     
     /** 
-     *  Apply promotion to item
+     *  Apply promotion to product
      *
-     *  @param  item    item to apply promotion
-     *          item    item with promotion applied
+     *  @param  product    product to apply promotion
+     *          product    product with promotion applied
      */
-    public abstract Product apply(Product item);
+    public abstract Product apply(Product product);
 
 
     public String getId() {

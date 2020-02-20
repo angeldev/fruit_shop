@@ -16,15 +16,15 @@ import java.util.List;
 public class Checkout {
     
     /** Total amount to be paid without promotions applied */
-    private int total;
+    private float total;
     
     
     /** Total amount of money the user is saving because of promotions */
-    private int totalPromo;
+    private float totalPromo;
     
     
     /** Total amount to be paid with promotions applied */
-    private int totalPayable;
+    private float totalPayable;
     
     
     /** Quantity of products in the cart */
@@ -46,7 +46,7 @@ public class Checkout {
     /**
      *  Checkout's constructor
      */
-    public Checkout(int total, int totalPromo, int qty, List<Product> products) {
+    public Checkout(float total, float totalPromo, int qty, List<Product> products) {
         super();
         this.total = total;
         this.totalPromo = totalPromo;
@@ -55,7 +55,7 @@ public class Checkout {
     }
 
 
-    public int getTotal() {
+    public float getTotal() {
         return total;
     }
     
@@ -65,17 +65,17 @@ public class Checkout {
      * 
      * @param amount  amount to add
      */
-    public void addToTotal(int amount) {
+    public void addToTotal(float amount) {
         total += amount;
     }
 
 
-    public int getTotalPromo() {
+    public float getTotalPromo() {
         return totalPromo;
     }
 
 
-    public void setTotalPromo(int totalPromo) {
+    public void setTotalPromo(float totalPromo) {
         this.totalPromo = totalPromo;
     }
     
@@ -85,12 +85,12 @@ public class Checkout {
      * 
      * @param amount  amount to add
      */
-    public void addToTotalPromo(int amount) {
+    public void addToTotalPromo(float amount) {
         totalPromo += amount;
     }
 
 
-    public int getTotalPayable() {
+    public float getTotalPayable() {
         return getTotal() - getTotalPromo();
     }
 

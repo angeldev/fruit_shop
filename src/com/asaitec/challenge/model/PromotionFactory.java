@@ -3,7 +3,6 @@
  */
 package com.asaitec.challenge.model;
 
-import java.util.Map;
 
 /**
  * The PromotionFactory class create the right Promotion instance depending of 
@@ -31,22 +30,19 @@ public class PromotionFactory {
      *          properties      properties of this type of promotion
      *  @return                 a Promotion object
      */
-    public static Promotion getPromotion(String id, PromotionType promotionType, Map<String, Object> properties){
-       if(id == null || promotionType == null){
+    public static Promotion getPromotion(PromotionType promotionType){
+       if(promotionType == null){
           return null;
        }     
        
 
-       /*if(promotionType.equals(PromotionType.BUY_X_PAY_Y_)){
-          return new BuyXGetYFreePromotion(id, promotionType,
-                  (int) properties.get("required_qty"), (int) properties.get("free_qty"));
+       if(promotionType.equals(PromotionType.BUY_X_PAY_Y_)){
+          // TODO: return BUY_X_PAY_Y_ object
        } else if(promotionType.equals(PromotionType.BUY_X_FREE_PRODUCT)){
-          return new QtyBasedPriceOverridePromotion(id, promotionType, 
-                  (int) properties.get("required_qty"), (int) properties.get("price"));
+          // TODO: return BUY_X_FREE_PRODUCT object
        } else if(promotionType.equals(PromotionType.PRICE_OVERRIDE)){
-          return new FlatPercentPromotion(id, promotionType,
-                  (int) properties.get("amount"));
-       }*/
+          // TODO: return PRICE_OVERRIDE object
+       }
 
        return null;
     }

@@ -23,21 +23,14 @@ public class CheckoutServiceImpl implements CheckoutService {
     
     private Checkout checkout;
     
-    
-    /**
-     * CheckoutServiceImpl's constructor
-     */
-    public CheckoutServiceImpl() {
-        
-    }
-    
-    
+ 
     /**
      * CheckoutServiceImpl's constructor
      */
     public CheckoutServiceImpl(ProductsClient productsClient) {
         super();
         this.productsClient = productsClient;
+        this.checkout = new Checkout();
     }
     
     
@@ -53,12 +46,10 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     @Override
     public Checkout checkout(Cart cart) {
-        /*List<Product> products = cart.getProducts();
-        for(Item item:items) {
-            item = getItemDetails(item.getId(), item.getQty());
-            item = applyPromotions(item);
-            checkout = updateCheckout(checkout, item);
-        }*/
+        for(Product cartProduct: cart.getProducts()) {
+            Product product = getProductDetails(cartProduct);
+            checkout = updateCheckout(checkout, product);
+        }
         return checkout;
     }
 
@@ -88,12 +79,12 @@ public class CheckoutServiceImpl implements CheckoutService {
     protected Checkout updateCheckout(Checkout checkout, Product product) {
         checkout.addToQty(product.getQty());
         
-        /*int productTotal = product.getPrice() * product.getQty();
+        float productTotal = product.getPrice() * product.getQty();
         checkout.addToTotal(productTotal);
         
         checkout.addToTotalPromo(product.getSaved());
         
-        checkout.addItem(product);*/
+        checkout.addProduct(product);
         
         return checkout;
     }

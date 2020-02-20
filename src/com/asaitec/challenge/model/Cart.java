@@ -11,7 +11,7 @@ import com.asaitec.challenge.util.Utils;
 
 /**
  * The Class  is a representation of supermarket's cart where users put 
- * items they are going to buy
+ * products they are going to buy
  * 
  * @author Angel David Macho
  * 

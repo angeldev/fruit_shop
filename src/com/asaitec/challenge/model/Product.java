@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The Product class is a representation of supermarket's items that users can buy
+ * The Product class is a representation of supermarket's products that users can buy
  * 
  * @author Angel David Macho
  * 
@@ -30,7 +30,7 @@ public class Product {
     private int saved;
     
     
-    /** Number of items added to cart */
+    /** Number of products added to cart */
     private int qty;
     
     
