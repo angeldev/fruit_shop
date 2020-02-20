@@ -23,6 +23,7 @@ public class Utils {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
             return null;
         }
         return lines;

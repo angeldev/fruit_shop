@@ -18,7 +18,8 @@ import com.asaitec.challenge.util.Utils;
  */
 public class Cart {
     
-    private final String filePath = "src/com/asaitec/challenge/res/cart";
+    //private final String filePath = "src/com/asaitec/challenge/res/cart";
+    private final String filePath = "./cart.txt";
     
     /** File where products are stored */
     private final File file = new File(filePath);

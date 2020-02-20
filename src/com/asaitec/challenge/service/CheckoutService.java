@@ -3,8 +3,8 @@
  */
 package com.asaitec.challenge.service;
 
-import com.qikserve.challenge.model.Cart;
-import com.qikserve.challenge.model.Checkout;
+import com.asaitec.challenge.model.Cart;
+import com.asaitec.challenge.model.Checkout;
 
 /**
  * The <code>CheckoutServiceImpl</code> class contains the business logic of 

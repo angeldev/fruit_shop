@@ -19,7 +19,8 @@ import com.asaitec.challenge.util.Utils;
  */
 public class ProductsClient {
 
-    private final String filePath = "src/com/asaitec/challenge/res/products";
+    //private final String filePath = "src/com/asaitec/challenge/res/products";
+    private final String filePath = "./products.txt";
             
     /** File where products are stored */
     private final File file = new File(filePath);

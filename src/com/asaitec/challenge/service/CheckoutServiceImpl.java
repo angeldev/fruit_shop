@@ -1,18 +1,14 @@
 /**
- * Copyright (c) 2020 QikServe
+ * Copyright (c) 2020 Asaitec
  */
 package com.asaitec.challenge.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.qikserve.challenge.client.ItemsClient;
-import com.qikserve.challenge.model.Cart;
-import com.qikserve.challenge.model.Checkout;
-import com.qikserve.challenge.model.Item;
-import com.qikserve.challenge.model.Promotion;
+import com.asaitec.challenge.client.ProductsClient;
+import com.asaitec.challenge.model.Cart;
+import com.asaitec.challenge.model.Checkout;
+import com.asaitec.challenge.model.Product;
 
 /**
  * The <code>CheckoutServiceImpl</code> class is an implementation of 
@@ -21,13 +17,10 @@ import com.qikserve.challenge.model.Promotion;
  * @author angeldavid
  *
  */
-@Service
 public class CheckoutServiceImpl implements CheckoutService {
 
-    @Autowired
-    private ItemsClient itemsClient;
+    private ProductsClient productsClient;
     
-    @Autowired
     private Checkout checkout;
     
     
@@ -42,78 +35,65 @@ public class CheckoutServiceImpl implements CheckoutService {
     /**
      * CheckoutServiceImpl's constructor
      */
-    public CheckoutServiceImpl(ItemsClient itemsClient) {
+    public CheckoutServiceImpl(ProductsClient productsClient) {
         super();
-        this.itemsClient = itemsClient;
+        this.productsClient = productsClient;
     }
     
     
     /**
      * CheckoutServiceImpl's constructor
      */
-    public CheckoutServiceImpl(ItemsClient itemsClient, Checkout checkout) {
+    public CheckoutServiceImpl(ProductsClient productsClient, Checkout checkout) {
         super();
-        this.itemsClient = itemsClient;
+        this.productsClient = productsClient;
         this.checkout = checkout;
     }
 
 
     @Override
     public Checkout checkout(Cart cart) {
-        List<Item> items = cart.getItems();
+        /*List<Product> products = cart.getProducts();
         for(Item item:items) {
             item = getItemDetails(item.getId(), item.getQty());
             item = applyPromotions(item);
             checkout = updateCheckout(checkout, item);
-        }
+        }*/
         return checkout;
     }
 
-    
+  
     /**
-     * Apply promotions to item
+     * Get product information
      * 
-     * @param   item  item to apply promotions
-     * @return  item with promotions applied
+     * @param   productId  unique id of product
+     *          qty     quantity of product
+     * @return  product updated with more information
      */
-    protected Item applyPromotions(Item item) {
-        for (Promotion promotion:item.getPromotions()) {
-            promotion.apply(item);
-        }
-        return item;
+    protected Product getProductDetails(Product cartProduct) {
+        Product product = productsClient.getProductById(cartProduct.getId());
+        cartProduct.setName(product.getName());
+        cartProduct.setPrice(product.getPrice());
+        return cartProduct;
     }
     
     
     /**
-     * Get item information
-     * 
-     * @param   itemId  unique id of item
-     *          qty     quantity of item
-     * @return  item updated with more information
-     */
-    protected Item getItemDetails(String itemId, int qty) {
-        Item item = itemsClient.getItemById(itemId);
-        item.setQty(qty);
-        return item;
-    }
-    
-    
-    /**
-     * Update checkout values with new item added
+     * Update checkout values with new product added
      * 
      * @param checkout  checkout to update
-     *        item      item to add to the checkout
+     *        product   product to add to the checkout
      * @return          checkout updated
      */
-    protected Checkout updateCheckout(Checkout checkout, Item item) {
-        checkout.addToQty(item.getQty());
+    protected Checkout updateCheckout(Checkout checkout, Product product) {
+        checkout.addToQty(product.getQty());
         
-        int itemTotal = item.getPrice() * item.getQty();
-        checkout.addToTotal(itemTotal);
+        /*int productTotal = product.getPrice() * product.getQty();
+        checkout.addToTotal(productTotal);
         
-        checkout.addToTotalPromo(item.getSaved());
+        checkout.addToTotalPromo(product.getSaved());
         
-        checkout.addItem(item);
+        checkout.addItem(product);*/
         
         return checkout;
     }
